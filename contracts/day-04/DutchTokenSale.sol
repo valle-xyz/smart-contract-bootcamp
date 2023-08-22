@@ -27,7 +27,7 @@ contract DutchTokenSale is Owned {
         external
         onlyOwner
     {
-        require(block.timestamp < start, "Sale has already started");
+        require(block.timestamp < startTime, "Sale has already started");
         require(startTime < endTime, "Start must be before end");
         startPrice = startPrice_;
         endPrice = endPrice_;
