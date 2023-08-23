@@ -23,8 +23,8 @@ contract SimplePerps {
 
     function openPosition(uint256 collateral, uint256 leverage) external {
         int256 entryPrice = _getPrice();
-        collateralToken.safeTransferFrom(msg.sender, address(this), collateral);
         positions[++nextId] = Position(collateral, entryPrice, block.timestamp, leverage, msg.sender);
+        collateralToken.safeTransferFrom(msg.sender, address(this), collateral);
     }
 
     function closePosition(uint256 id) external {
@@ -43,7 +43,6 @@ contract SimplePerps {
     function liquidatePosition(uint256 id) external {
         Position storage position = positions[id];
         require(position.owner != address(0), "Position does not exist");
-        require(position.owner == msg.sender, "Only the owner can close the position");
         int256 exitPrice = _getPrice();
         int256 profit = (exitPrice - position.entryPrice) * int256(position.leverage) * int256(position.collateral)
             / position.entryPrice / 1e6;
