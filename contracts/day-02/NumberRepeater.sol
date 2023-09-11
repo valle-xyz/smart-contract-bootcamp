@@ -10,7 +10,7 @@ contract NumberRepeater {
         numbersGame = INumbersGame(numberAddress);
     }
 
-    function repeat() external returns (uint256) {
+    function repeat() external view returns (uint256) {
         return INumbersGame(numbersGame).letsSeeYourNumber();
     }
 
@@ -18,7 +18,7 @@ contract NumberRepeater {
         numbersGame = INumbersGame(newAddress);
     }
 
-    function repeat(address numberAddress) external returns (uint256) {
+    function repeat(address numberAddress) external view returns (uint256) {
         return INumbersGame(numberAddress).letsSeeYourNumber();
     }
 }
