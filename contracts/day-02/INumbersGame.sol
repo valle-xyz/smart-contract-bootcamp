@@ -2,5 +2,5 @@
 pragma solidity ^0.8.18;
 
 interface INumbersGame {
-    function letsSeeYourNumber() external returns (uint256);
+    function letsSeeYourNumber() external view returns (uint256);
 }

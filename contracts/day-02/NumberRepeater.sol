@@ -4,21 +4,21 @@ pragma solidity ^0.8.18;
 import "contracts/day-02/INumbersGame.sol";
 
 contract NumberRepeater {
-    INumbersGame number;
+    INumbersGame numbersGame;
 
     constructor(address numberAddress) {
-        number = INumbersGame(numberAddress);
+        numbersGame = INumbersGame(numberAddress);
     }
 
-    function repeat() external returns (uint256) {
-        return INumbersGame(number).letsSeeYourNumber();
+    function repeat() external view returns (uint256) {
+        return INumbersGame(numbersGame).letsSeeYourNumber();
     }
 
-    function setNumber(address newAddress) external {
-        number = INumbersGame(newAddress);
+    function setNumbersGame(address newAddress) external {
+        numbersGame = INumbersGame(newAddress);
     }
 
-    function repeat(address numberAddress) external returns (uint256) {
+    function repeat(address numberAddress) external view returns (uint256) {
         return INumbersGame(numberAddress).letsSeeYourNumber();
     }
 }
