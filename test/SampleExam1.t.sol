@@ -9,6 +9,7 @@ contract SampleExamTest is Test {
     SampleExam1 exam;
 
     function setUp() public {
+        vm.warp(1);
         exam = new SampleExam1();
     }
 
@@ -49,5 +50,14 @@ contract SampleExamTest is Test {
         vm.prank(address(3));
         exam.registerSolution(42);
         assertEq(exam.didEveryonePass(Solarray.addresses(address(1), address(2), address(3))), "No");
+    }
+
+    function test_cannot_register_after_exam_ended() public {
+        exam.startExam();
+        vm.roll(31 minutes); // Move the time forward by 31 minutes, so the 30-minute exam duration is exceeded
+        vm.warp(31 minutes);
+        vm.startPrank(address(1));
+        vm.expectRevert("Exam is not open");
+        exam.registerSolution(42);
     }
 }
