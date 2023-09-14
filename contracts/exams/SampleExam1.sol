@@ -15,6 +15,7 @@ contract SampleExam1 {
         endTime = block.timestamp + 15 minutes;
     }
 
+    /// @notice In this function, the student should register the solution to the exam.
     function registerSolution(uint256 rightNumber) external {
         require(block.timestamp < endTime, "Exam is not open");
         require(rightNumber == 42, "Wrong number");
