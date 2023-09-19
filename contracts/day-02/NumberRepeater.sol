@@ -11,7 +11,7 @@ contract NumberRepeater {
     }
 
     function repeat() external view returns (uint256) {
-        return INumbersGame(numbersGame).letsSeeYourNumber();
+        return numbersGame.letsSeeYourNumber();
     }
 
     function setNumbersGame(address newAddress) external {
